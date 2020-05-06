@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+
+    <title>InnoCentive Challenges</title>
+  </head>
+  <body>
+
+<div class="container my-2">
+<h2>InnoCentive Challenges &nbsp | <b>Sort by : </b><a href="{% url 'Asc' %}" class="btn btn btn-primary">Assending</a> &nbsp <a href="{% url 'Dsc' %}" class="btn btn btn-primary">Desending</a> &nbsp <a href="{% url 'home' %}" class="btn btn btn-primary">Add your Challenge</a></h2>
+<hr>
+{% for i in CH %}
+  <div class="card">
+  <h5 class="card-header">{{i.title}}</h5>
+  <div class="card-body">
+  <div class="img my-2">
+  <img class="img-thumbnail inno-image" src="media/{{i.pic}}" alt="Challenge: Early Signs of Pending Pandemic" width="200px" height="200px">
+  </div>
+  <h3>Price : {{i.price}}</h3>
+  <hr>
+  <p>Deadline : <b>{{i.timeStamp}}</b> | Active Solvers : <b>{{i.active_Solvers}}</b></p>
+  <p><b>Tags : </b>{{i.Tags}}.</p>
+    <p class="card-text"><b>More about challenge : </b>{{i.contents}}</p>
+    <a href="#" class="btn btn-sm btn-primary">Read Challenge Details </a>
+  </div>
+</div>
+<br>
+{% endfor %}
+</div>
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
