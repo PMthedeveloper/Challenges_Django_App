@@ -1,18 +1,24 @@
 from django.shortcuts import render,redirect
 from .models import Challenges
 from django.contrib import messages
+from django.core.files.storage import FileSystemStorage
+
 # Create your views here.
 def home(request):
-    if request.method=='POST':
-        pic = request.POST['pic']
-        title = request.POST['title']
-        timeStamp = request.POST['timeStamp']
-        active_Solvers = request.POST['active_Solvers']
-        Tags = request.POST['Tags']
-        price = request.POST['price']
-        contents = request.POST['contents']
-        slug = request.POST['slug']
-        Challenge = Challenges(pic=pic,title=title,timeStamp=timeStamp,active_Solvers=active_Solvers,Tags=Tags,price=price,contents=contents,slug=slug)
+    if request.method=='POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name,myfile)
+        url = fs.url(filename)
+        Challenge = Challenges(title = request.POST['title'],
+                                timeStamp = request.POST['timeStamp'],
+                                active_Solvers = request.POST['active_Solvers'],
+                                Tags = request.POST['Tags'],
+                                price = request.POST['price'],
+                                pic = url,
+                                contents = request.POST['contents'],
+                                slug = request.POST['slug']
+        )
         Challenge.save();
         messages.success(request,"Your Challenge has been add Successfully!");
         return redirect(show)

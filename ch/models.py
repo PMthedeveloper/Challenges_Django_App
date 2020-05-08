@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Challenges(models.Model):
     sno = models.AutoField(primary_key=True);
-    pic = models.ImageField(default="");
+    pic = models.URLField();
     title = models.CharField(max_length=10000);
     timeStamp = models.DateTimeField(blank=False);
     active_Solvers = models.IntegerField();
